@@ -25,3 +25,12 @@ Program works with all number of peaks except 1 and 2. Will probably have to wri
 Wrote a function to handle situations when number of peaks is 1 or 2. Also made the program into a function. Allows either function to be called on depending on number of peaks.
 
 Need to beautify and comment out code. Also need to add height and multipliers.
+
+### Mar 2
+I retract previous statement, code does not work with number of peaks greater than 3.
+
+Restarting the portion of enumerate every possible peak position in the genome. Did not like how messy and confusing code was getting.
+
+No real progress today just going in circles trying to get all unique combinations.
+
+Choose function good for knowing the total number of combinations.
