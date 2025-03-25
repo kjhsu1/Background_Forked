@@ -34,3 +34,20 @@ Restarting the portion of enumerate every possible peak position in the genome. 
 No real progress today just going in circles trying to get all unique combinations.
 
 Choose function good for knowing the total number of combinations.
+
+### Mar 25
+Forgot to mark down notes after meeting with Dr.Korf. He talked about steps for the project.
+
+Step 1: Creating random genome
+
+Step 2: Create multiplier deterministically
+
+Step 3: Create peaks
+
+As of today, a first attempt was made at writing a script for the step 1 and step 2. They are finished in the sense that they produce the intended output. However, they are no where close to being using in any other experiments.
+
+The genome is just randomly generated nucleotides. There is no biological situations taken into consideration when in the genome generation.
+
+The multiplier is just a value that has been assigned to regions of the genome, and this conveyed by having an ASCII value below each nucleotide. The ASCII character "A" is equivalent to decimal value "0", and the decimal values are in log base 2.
+
+The way peaks are created needs to be discussed because they can be generate randomly, based on the nucleotide sequence, deterministically, or some other way.

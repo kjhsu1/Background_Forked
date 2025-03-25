@@ -18,7 +18,9 @@ genome = get_genome()
 rov = 7 # number of regions of variability
 
 # .001x .25x .5x 1x 2x 4x 1000x
-multipliers = ['7','?','@','A','B','C','K'] # ASCII A = dec 0
+# ASCII A = dec 0
+# dec numbers are in log base 2
+multipliers = ['7','?','@','A','B','C','K']
 
 def assigning_multiplier(genome, multipliers, rov):
     count = 0
