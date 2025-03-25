@@ -17,4 +17,12 @@ def make_genome(size):
     genome = ''.join(genome)
     return genome
 
-print(make_genome(genome_size))
+with open('genome.txt', 'w') as fp:
+    fp.write(make_genome(genome_size))
+
+'''
+Note:
+    Genome prints as one string on one line.
+    Should there be a new line after a certain number of characters?
+    This genome also has little to no actual properties of a real genome.
+'''
