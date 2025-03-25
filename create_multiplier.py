@@ -2,6 +2,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='creates background multiplier')
 parser.add_argument('--file', type=str, help='genome file')
+parser.add_argument('-o','--out', type=str, default='multiplier.txt', help='output filename')
 args = parser.parse_args()
 
 def get_genome():
@@ -33,7 +34,7 @@ def assigning_multiplier(genome, multipliers, rov):
 
 regions, rm = assigning_multiplier(genome,multipliers,rov)
 
-with open('multiplier.txt','w') as fp:
+with open(args.out,'w') as fp:
     count = 0
     for piece in regions:
         fp.write(piece)
@@ -45,3 +46,11 @@ with open('multiplier.txt','w') as fp:
 
 # print(regions, rm)
 # print(len(regions), len(rm))
+
+'''
+Notes:
+    What should the values of the multiplier be?
+    The size of the regions with different multipliers are mostly fixed
+    Only can take in genomes in file format right now
+        Not sure if it is necessary to have different genome input methods
+'''
