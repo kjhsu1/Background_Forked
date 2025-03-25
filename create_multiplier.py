@@ -2,16 +2,46 @@ import argparse
 
 parser = argparse.ArgumentParser(description='creates background multiplier')
 parser.add_argument('--file', type=str, help='genome file')
-parser.add_argument('--genome', type=str, help='genome string (used for testing)')
 args = parser.parse_args()
 
-def genome():
-    if args.file:
-        with open(args.file) as fp:
-            g_file = []
-            for line in fp:
-                g_file.append(line)
-            ''.join(g_file)
-    print(g_file)
+def get_genome():
+    with open(args.file) as fp:
+        genome = []
+        for line in fp:
+            genome.append(line)
+        ''.join(genome)
+        genome = genome[0]
+    return genome
 
-genome()
+genome = get_genome()
+rov = 7 # number of regions of variability
+
+# .001x .25x .5x 1x 2x 4x 1000x
+multipliers = ['7','?','@','A','B','C','K'] # ASCII A = dec 0
+
+def assigning_multiplier(genome, multipliers, rov):
+    count = 0
+    regions =[]
+    region_multiplier = []
+    for region in range(0,len(genome),rov):
+        regions.append(genome[region:region+rov])
+        if count == len(multipliers):
+            count = 0
+        region_multiplier.append(multipliers[count])
+        count += 1
+    return regions, region_multiplier
+
+regions, rm = assigning_multiplier(genome,multipliers,rov)
+
+with open('multiplier.txt','w') as fp:
+    count = 0
+    for piece in regions:
+        fp.write(piece)
+    fp.write('\n')
+    for part in regions:
+        for nuc in part:
+            fp.write(f"{rm[count]}")
+        count += 1
+
+# print(regions, rm)
+# print(len(regions), len(rm))
