@@ -4,7 +4,7 @@ import argparse
 parser = argparse.ArgumentParser(description='creates random genome')
 parser.add_argument('genome_size', type=int, help='size of genome')
 parser.add_argument('-s','--seed', type=int, help='set random seed')
-parser.add_argument('-f','--file', type=str, default='genome.txt', help='output filename')
+parser.add_argument('-o','--out', type=str, default='genome.txt', help='output filename')
 args = parser.parse_args()
 
 genome_size = args.genome_size
@@ -18,7 +18,7 @@ def make_genome(size):
     genome = ''.join(genome)
     return genome
 
-with open(args.file, 'w') as fp:
+with open(args.out, 'w') as fp:
     fp.write(make_genome(genome_size))
 
 '''
