@@ -51,3 +51,12 @@ The genome is just randomly generated nucleotides. There is no biological situat
 The multiplier is just a value that has been assigned to regions of the genome, and this conveyed by having an ASCII value below each nucleotide. The ASCII character "A" is equivalent to decimal value "0", and the decimal values are in log base 2.
 
 The way peaks are created needs to be discussed because they can be generate randomly, based on the nucleotide sequence, deterministically, or some other way.
+
+### Apr 1
+Genome should wrap every 50 lines.
+
+Output of code should be closer to gff formats and really fastq format
+
+Peaks should be generated with a set number of base pairs in between them. Peak generator should be able to do both narrow and wide peaks.
+
+Made it so the generated genome wraps after 50 characters. Modified the output of the multiplier so it is easier to see. Still need to output gff like format for multiplier values.

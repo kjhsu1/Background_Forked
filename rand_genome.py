@@ -12,9 +12,14 @@ genome_size = args.genome_size
 random.seed(args.seed)
 
 def make_genome(size):
+    count = 0
     genome = []
     for pos in range(size):
         genome.append(random.choice('ACGT'))
+        count += 1
+        if count == 50:
+            genome.append('\n')
+            count = 0
     genome = ''.join(genome)
     return genome
 
@@ -23,7 +28,6 @@ with open(args.out, 'w') as fp:
 
 '''
 Note:
-    Genome prints as one string on one line.
-    Should there be a new line after a certain number of characters?
+    The genome wraps every 50 lines
     This genome also has little to no actual properties of a real genome.
 '''
