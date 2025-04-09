@@ -1,14 +1,15 @@
 import argparse
 
 parser = argparse.ArgumentParser(description='creates background multiplier')
-parser.add_argument('--file', type=str, help='genome file')
+parser.add_argument('file', type=str, help='genome file')
 parser.add_argument('-o','--out', type=str, default='multiplier.txt', help='output filename')
+parser.add_argument('--rov', type=int, default=7, help='the size of the variable regions')
 args = parser.parse_args()
 
 genome_file = args.file
 
 # extracts genome from file and returns a string
-def get_genome():
+def get_genome(genome_file):
     with open(genome_file) as fp:
         genome = []
         for line in fp:
@@ -17,8 +18,8 @@ def get_genome():
         genome = ''.join(genome)
     return genome
 
-genome = get_genome()
-rov = 7 # size of regions of variability
+genome = get_genome(genome_file)
+rov = args.rov # size of regions of variability
 
 # .001x .25x .5x 1x 2x 4x 1000x
 # ASCII A = logbase2(0)
@@ -45,23 +46,25 @@ with open(args.out,'w') as fp:
     pos = 0 # used for desinating which value is printed
     counter = 0 # need better name, counts the times a multiplier symbol is printed
     fp.write('@genome\n') # line that follows '@' is the genome
-    for nuc in genome:
-        fp.write(nuc)
+    for n in range(len(genome)):
+        fp.write(genome[n])
         count += 1
         if count == 50: # 50 because wrap at that many characters
             fp.write('\n')
-            if pos == 0: fp.write('+values\n') # line that follows '+' is the value
-            else:        fp.write('+\n')
-            for n in range(50):
+            fp.write('+\n')
+            for number in range(50):
                 fp.write(rm[pos])
                 counter += 1
                 if counter == rov:
                     pos += 1
                     counter = 0
             count = 0
-            fp.write('\n')
-            if pos != len(rm)-1: fp.write('@\n')
+            # fp.write('\n')
+            # fp.write('@\n')
 
+            if n != len(genome)-1:
+                fp.write('\n')
+                fp.write('@\n')
 '''
 Notes:
     Only can take in genomes in file format right now

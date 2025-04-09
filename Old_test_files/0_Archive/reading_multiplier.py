@@ -9,7 +9,7 @@ args = parser.parse_args()
 
 # converts multiplier from file to a string
 with open(args.multiplier_file) as fp:
-    next_line = False
+    next_line = False   # gets line containing the values
     multiplier = []
     for line in fp:
         if line[0] == '+':
@@ -21,6 +21,7 @@ with open(args.multiplier_file) as fp:
     multiplier = ''.join(multiplier)
     multiplier = multiplier.replace('\n','')
 
+# converts symbols to dec value
 def dec_ls_values(multiplier):
     count = 0
     ls_val = []
@@ -31,6 +32,7 @@ def dec_ls_values(multiplier):
         ls_val.append(value)
     return ls_val
 
+# writes new output file
 with open(args.outfile, 'w') as out:
     ls_val = dec_ls_values(multiplier)
     start = 1
