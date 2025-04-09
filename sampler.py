@@ -19,6 +19,11 @@ def genome_array(size):
     return genome
 genome = genome_array(size)
 
+
+bm.giza(genome,10,)
+
+
+
 def sample(genome,coverage):
     for n in range(coverage):
         for pos in range(len(genome)):
