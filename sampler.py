@@ -20,7 +20,7 @@ def genome_array(size):
 genome = genome_array(size)
 
 
-bm.giza(genome,10,)
+backgroud = bm.giza(genome)
 
 
 
