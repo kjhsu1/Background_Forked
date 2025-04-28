@@ -92,7 +92,7 @@ def peaks(genome,ph,pw,sbp):
         half_peak.append(peak_value[-(i+1)])
     if pw%2 == 0: peak_value.append(ph)
     peak_value.extend(half_peak)
-    print(peak_value)
+    # print(peak_value)
 
 
     for pos in range(len(ls_peaks)):
@@ -105,8 +105,6 @@ def peaks(genome,ph,pw,sbp):
             count = 0
     return ls_peaks
 
-print(peaks(genome,ph,pw,sbp), f'ph = {ph}', f'pw = {pw}', f'sbp = {sbp}', sep='\n')
-
 
 
 
@@ -114,6 +112,7 @@ print(peaks(genome,ph,pw,sbp), f'ph = {ph}', f'pw = {pw}', f'sbp = {sbp}', sep='
 # sim_sampled_bg = sim_bgsampler(genome,coverage)
 # sampled_1_bg = slow_bgsampler(genome,coverage,background)
 # sampled_2_bg = fast_bgsampler(genome,coverage,background)
+# forground = peaks(genome,ph,pw,sbp)
 
 # print(background, sim_sampled_bg, sampled_1_bg, sampled_2_bg, sep='\n')
 
