@@ -25,7 +25,7 @@ ________________
 
 # this particular genome has 3 chroms, chr1, chr2, chr3, with lengths 100, 200, 300 respectively
 fasta = '../Genomes/random_genome_1.fa.gz'
-coverage = 10 
+coverage = 1
 num_bg_peaks = 1
 num_fg_peaks = 1
 k = 20  # fragment length
@@ -42,7 +42,7 @@ ______________________
     - we should observe that it converges to above probabilities (CHECKED)
 
 - to check if peaks are added properly we can just graph them (CHECKED)
-- we should also check if experiment samples have similar distributions to experiment pmf 
+- we should also check if experiment samples have similar distributions to experiment pmf (CHECKED)
 '''
 
 
@@ -174,10 +174,19 @@ def sample_genome(fasta, genome_pmfs):
     # print(json.dumps(reads_dict, indent=4))
     return reads_dict
 
-genome_pmf = create_pmf_all_chroms(fasta) # create genome pmf based on genome fasta
-# print(json.dumps(genome_pmf, indent=4)) # for debugging
-exp = sample_genome(fasta, genome_pmf) # generate sample from it
-#print(json.dumps(exp, indent=4)) # debug for debugging
+def sample_to_fasta(exp, fasta):
+    """
+    Converts base indices from the experiment into FASTA format with actual ACGT bases
+    """
+    frag_num = 1
+    for id, seq in LIB.read_fasta(fasta):
+        for sample in exp[id]:
+            dna = []
+            for base_index in sample:
+                dna.append(seq[base_index])
+            print(f'>read_{frag_num}:{id}')
+            print(''.join(dna))
+            frag_num += 1
 
 """
 Functions for Debugging/Checking
@@ -264,11 +273,23 @@ def graph_experiment(exp, genome_pmf):
         plt.title(f'Base Distribution in Sample: {chrom}')
         plt.show()
 
-# uncomment both to compare pmf graph with actual experiment graph
-# NOTE: x-axis for pmf is not base coordinate for all bases in genome, rather base coordinates for first base of kmer/fragment
-graph_all_genome_pmf(genome_pmf)
-graph_experiment(exp, genome_pmf)
+'''
+Below code will print the FASTA for the reads generated from experiment
+'''
 
+genome_pmf = create_pmf_all_chroms(fasta)
+exp = sample_genome(fasta, genome_pmf)
+# print(json.dumps(genome_pmf, indent=4)) # for debugging
+# print(json.dumps(exp, indent=4)) # for debugging
+sample_to_fasta(exp, fasta)
+
+'''
+uncomment both to compare pmf graph with actual experiment graph
+NOTE: x-axis for pmf is not base coordinate for all bases in genome, rather base coordinates for first base of kmer/fragment
+'''
+
+# graph_all_genome_pmf(genome_pmf)
+# graph_experiment(exp, genome_pmf)
 
 
 
