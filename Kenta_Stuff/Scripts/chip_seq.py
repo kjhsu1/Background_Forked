@@ -1,10 +1,6 @@
-# make a sampler
-
 """
-TO-DO FOR NEXT TIME 
-1. CHECK IF WE NEED TO ADD ANYTHING TO THE PROGRAM
-2. CHECK IF NO MISTAKES WERE MADE
-3. TIDY UP THE PROGRAM
+This program models a Chip-Seq experiment as a sampler drawing from a combined probability mass function
+of the background and foreground
 """
 
 import sys
@@ -29,14 +25,14 @@ ________________
 
 # this particular genome has 3 chroms, chr1, chr2, chr3, with lengths 100, 200, 300 respectively
 fasta = '../Genomes/random_genome_1.fa.gz'
-coverage = 1 
+coverage = 10 
 num_bg_peaks = 1
 num_fg_peaks = 1
 k = 20  # fragment length
 
 
 '''
-Notes for this genome:
+Notes for random_genome_1.fa.gz:
 ______________________
 
 - total bp is 600
@@ -45,7 +41,8 @@ ______________________
     - meaning when we look at percentage of reads generated with respect to which chromosomes...
     - we should observe that it converges to above probabilities (CHECKED)
 
-- to check if peaks are added properly we can just graph them
+- to check if peaks are added properly we can just graph them (CHECKED)
+- we should also check if experiment samples have similar distributions to experiment pmf 
 '''
 
 
@@ -61,13 +58,12 @@ def add_peaks(pmf, num_peaks):
     """ 
     peaks = [2, 4, 6, 8, 9, 8, 6, 4, 2] # can change this however you want 
     used_peaks = [] # store used peaks
-    p_index = random.randint(0, len(pmf) - len(peaks)+1) # init
+    p_index = random.randint(0, len(pmf) - len(peaks)) # init
 
     for peak in range(num_peaks):
         while p_index in used_peaks:
             p_index = random.randint(0, len(pmf) - len(peaks)) # can't create peaks on the last 6 bases
         for i in range(p_index, p_index + len(peaks)): # create the peaks in the bin
-            print(i) # debug
             pmf[i] = pmf[i] + peaks[i-p_index] # should we add or multiply?
         # don't want peaks to overlap, and want a space of at least 1 between peaks
         start = p_index - 1
@@ -179,12 +175,12 @@ def sample_genome(fasta, genome_pmfs):
     return reads_dict
 
 genome_pmf = create_pmf_all_chroms(fasta) # create genome pmf based on genome fasta
+# print(json.dumps(genome_pmf, indent=4)) # for debugging
 exp = sample_genome(fasta, genome_pmf) # generate sample from it
-
-#print(json.dumps(exp, indent=4))
+#print(json.dumps(exp, indent=4)) # debug for debugging
 
 """
-Functions for Debugging
+Functions for Debugging/Checking
 _______________________
 """
 
@@ -233,18 +229,45 @@ def graph_all_genome_pmf(genome_pmf):
         pmf = genome_pmf[chrom]
         graph_pmf(pmf, title=f'P.M.F for Experimental, {chrom}')
 
+def graph_experiment(exp, genome_pmf):
+    """
+    Graph the sample base distribution
+    """
+    # initialize dict to track number of samples
+    sample_distribution = {}
+    for chrom in genome_pmf.keys():
+        sample_distribution[chrom] = {}
+        for i in range(len(genome_pmf[chrom]) + k-1):
+            sample_distribution[chrom][i] = 0
+
+    # print(json.dumps(sample_distribution, indent=4)) # debug
+
+    # count each sample
+    for chrom in exp.keys():
+        samples = exp[chrom]
+        for sample in samples:
+            for base in sample:
+                sample_distribution[chrom][base] += 1
+
+    # print(json.dumps(sample_distribution, indent=4)) # debug
+    
+    # graph each chrom
+    for chrom in sample_distribution.keys():
+        x = list(sample_distribution[chrom].keys())
+        y = list(sample_distribution[chrom].values())
+        # print(x) # debug
+        # print(y) #debug
+        plt.figure()
+        plt.plot(x, y)
+        plt.xlabel('Base Coordinate')
+        plt.ylabel('Counts')
+        plt.title(f'Base Distribution in Sample: {chrom}')
+        plt.show()
+
+# uncomment both to compare pmf graph with actual experiment graph
+# NOTE: x-axis for pmf is not base coordinate for all bases in genome, rather base coordinates for first base of kmer/fragment
 graph_all_genome_pmf(genome_pmf)
-
-'''
-bins_dict = {}
-for b in bins_indices:
-    bins_dict[b]: 0 # add new dict key-value pair for each bin number
-
-for sample in samples:
-    if sample in bins_dict:
-        bins_dict[sample]
-'''
-
+graph_experiment(exp, genome_pmf)
 
 
 
