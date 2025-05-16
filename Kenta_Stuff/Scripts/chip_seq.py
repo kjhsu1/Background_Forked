@@ -65,7 +65,7 @@ def add_peaks(pmf, num_peaks):
 
     for peak in range(num_peaks):
         while p_index in used_peaks:
-            p_index = random.randint(0, len(pmf) - len(peaks)+1) # can't create peaks on the last 6 bases
+            p_index = random.randint(0, len(pmf) - len(peaks)) # can't create peaks on the last 6 bases
         for i in range(p_index, p_index + len(peaks)): # create the peaks in the bin
             print(i) # debug
             pmf[i] = pmf[i] + peaks[i-p_index] # should we add or multiply?
