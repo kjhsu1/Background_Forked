@@ -109,14 +109,14 @@ def peaks(genome,ph,pw,sbp):
 
 
 
-# sim_sampled_bg = sim_bgsampler(genome,coverage)
+sim_sampled_bg = sim_bgsampler(genome,coverage)
 # sampled_1_bg = slow_bgsampler(genome,coverage,background)
-# sampled_2_bg = fast_bgsampler(genome,coverage,background)
-# forground = peaks(genome,ph,pw,sbp)
+sampled_2_bg = fast_bgsampler(genome,coverage,background)
+forground = peaks(genome,ph,pw,sbp)
+
+print(background, sampled_2_bg, forground, sep='\n')
 
 # print(background, sim_sampled_bg, sampled_1_bg, sampled_2_bg, sep='\n')
-
-
 
 '''
 Notes:
