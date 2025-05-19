@@ -8,6 +8,7 @@ import random
 import matplotlib.pyplot as plt
 import LIB
 import json
+import argparse
 
 """
 Assumptions for our Model
@@ -23,12 +24,26 @@ Global Variables
 ________________
 """
 
+parser = argparse.ArgumentParser(description="CHIP-seq Experiment Simulator")
+parser.add_argument('--fasta', type=str, required=True,
+    help='Path to the FASTA file')
+parser.add_argument('--coverage', type=float, default=1.0,
+    help='Coverage depth to simulate')
+parser.add_argument('--num_bg_peaks', type=int, default=1,
+    help='Number of random background peaks to add')
+parser.add_argument('--num_fg_peaks', type=int, default=1,
+    help='Number of random foreground peaks to add')
+parser.add_argument('--fragment_length', type=int, default=20,
+    help='The fragment length of each read (k-mer size); usually between 100=500bp')
+
+args = parser.parse_args()
+
 # this particular genome has 3 chroms, chr1, chr2, chr3, with lengths 100, 200, 300 respectively
-fasta = '../Genomes/random_genome_1.fa.gz'
-coverage = 1
-num_bg_peaks = 1
-num_fg_peaks = 1
-k = 20  # fragment length
+fasta = args.fasta
+coverage = args.coverage
+num_bg_peaks = args.num_bg_peaks
+num_fg_peaks = args.num_fg_peaks
+k = args.fragment_length
 
 
 '''
