@@ -6,3 +6,6 @@
 - I ran the shell script and seems to be working well
 = the FASTAs created by the various coverage experiments are stored in ```Generated_Data/Different_Coverages_Unbiased```
 
+- Also wrote script that takes in the directory that the reads are stored in, and spits out SAMs or alignments for them
+	- ```Scripts/align_multiple_fasta.sh```
+
