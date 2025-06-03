@@ -155,4 +155,6 @@ def main():
     # Call Peaks
     run_bam_to_peaks(exp_output_path, control_output_path, exp_fasta, control_fasta, genome_size, peaks_output_path)
 
-main()
+# main()
+
+run_bowtie2(genome_index, exp_fasta, exp_output_path) # for debugging
