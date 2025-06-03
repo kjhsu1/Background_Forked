@@ -1,6 +1,8 @@
 """
 This program models a Chip-Seq experiment as a sampler drawing from a combined probability mass function
 of the background and foreground
+
+This program will print FASTA of reads generated based on user defined arguments (coverage, number of peaks in fg, bg, etc)
 """
 
 import sys

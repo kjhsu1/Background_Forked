@@ -3,6 +3,16 @@ Can Take Two CHIP-seq reads as FASTA (one for experiment, one for control) and C
 """
 
 """
+NOTE
+- If the total genome size and coverage is too low, macs2 can't do its standard paired peak shift model
+- This means random_genome_1 at low coverages like x5 and x10 won't be able to do above
+- We can overide this by adding two parameters to our command 
+    1. "--nomodel", this tells it to ignore making the shift model
+    2. "--extsize", "20", this tells it to treat each fragment as uniform length of 20
+
+"""
+
+"""
 Imports
 ______
 """
@@ -155,6 +165,4 @@ def main():
     # Call Peaks
     run_bam_to_peaks(exp_output_path, control_output_path, exp_fasta, control_fasta, genome_size, peaks_output_path)
 
-# main()
-
-run_bowtie2(genome_index, exp_fasta, exp_output_path) # for debugging
+main()
