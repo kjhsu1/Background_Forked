@@ -60,3 +60,20 @@ Output of code should be closer to gff formats and really fastq format
 Peaks should be generated with a set number of base pairs in between them. Peak generator should be able to do both narrow and wide peaks.
 
 Made it so the generated genome wraps after 50 characters. Modified the output of the multiplier so it is easier to see. Still need to output gff like format for multiplier values.
+
+### Jun 16
+The primary focus has shifted to the first experiment.
+
+Experiment 1: running peak finders with randomly generate genomes. The foreground are the reads generated from the random genomes. The background is a random sampling of the genome.
+
+> Steps:
+> 1) Create fake random genome genome `Background/Kenta_Stuff/Scripts/random_genome_generator.py`
+> 2) Sample fake genome
+> 3) Generate reads from fake genome
+> 4) Align reads to genome (read `aligner_usage.md`)
+> 5) must convert sam to bam 
+> 6) Run results through multiple peak callers
+
+Kenta is working with Macs2?
+
+Russell is working with Homer.

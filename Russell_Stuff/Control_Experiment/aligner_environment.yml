@@ -1,7 +1,0 @@
-name: aligner
-channels:
-  - defaults
-  - bioconda
-dependencies:
-  - bowtie2=2.5.4
-  - python=3.10.12

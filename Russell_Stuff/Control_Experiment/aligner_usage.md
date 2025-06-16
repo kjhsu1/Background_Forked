@@ -1,9 +1,9 @@
 # How I got bowtie2 to work
 
 ## Conda environment creation
-Start by creating a conda environment using `conda env create -f aligner_environment.yml`.
+Start by creating a conda environment using `conda env create -f control_environment.yml`.
 
-Activate using `conda activate aligner`.
+Activate using `conda activate control_exp`.
 
 ## Set up
 Make sure `exp_1.fa` and `random_genome_1.fa.gz` is in pwd.
