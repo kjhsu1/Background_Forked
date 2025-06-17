@@ -27,14 +27,31 @@ User Arguments
 """
 
 parser = argparse.ArgumentParser(description='Call Peaks On All Combinations of Control+Experiment')
-argparse.add_argument('--control_dir', type=str, required=True, help=
-                      'path to directory containing all control reads FASTA files')
-argparse.add_argument('--experiment_dir', type=str, required=True, help=
-                      'path to directory containing all experiment reads FASTA files')
+
+parser.add_argument('--control_dir', type=str, required=True,
+                    help='path to directory containing all control reads FASTA files')
+parser.add_argument('--experiment_dir', type=str, required=True,
+                    help='path to directory containing all experiment reads FASTA files')
+parser.add_argument('--genome_index_path', type=str, required=True,
+                    help='path to genome index file')
+parser.add_argument('--exp_alignment_output_path', type=str, required=True,
+                    help='path to directory where you want experiment SAM/BAM/etc stored')
+parser.add_argument('--control_alignment_output_path', type=str, required=True,
+                    help='path to directory where you want control SAM/BAM/etc stored')
+parser.add_argument('--peaks_called_directory_path', type=str, required=True,
+                    help='path to directory where you want peak files to be stored')
+parser.add_argument('--genome_size', type=str, required=True,
+                    help='total genome size')
+
 arg = parser.parse_args()
 
 control_dir = arg.control_dir
 experiment_dir = arg.experiment_dir
+genome_index_path            = arg.genome_index_path
+exp_alignment_output_path    = arg.exp_alignment_output_path
+control_alignment_output_path = arg.control_alignment_output_path
+peaks_called_directory_path  = arg.peaks_called_directory_path
+genome_size                  = arg.genome_size
 
 """
 Functions
@@ -51,7 +68,6 @@ def get_files_in_dir(directory):
     for file in filenames:
         paths.append(os.path.join(directory, file))
     return paths
-
 
 def call_pipeline(
         exp_fasta,
@@ -92,22 +108,41 @@ def call_pipeline(
     except subprocess.CalledProcessError as e:
         print(f"Pipeline run failed: {e}")
     
-def peak_call_all_combs(control_dir, experiment_dir):
+def peak_call_all_combs(control_dir, 
+                        experiment_dir, 
+                        genome_index_path, 
+                        exp_alignment_output_path, 
+                        control_alignment_output_path, 
+                        peaks_called_directory_path, 
+                        genome_size):
+    
+    """
+    Takes in Control and Experiment Directories with CHIP-Seq Reads and Calls Peaks On All Possible Combinations
+    """
+
     all_control = get_files_in_dir(control_dir)
     all_exp = get_files_in_dir(experiment_dir)
 
     for control in all_control:
         for exp in all_exp:
-            call_pipeline(exp, 
-                          control, 
-                          '../../Bowtie2_Stuff/index/random_genome_1',
-                          '../../Generated_Data/Alignments/experiment',
-                          '../../Generated_Data/Alignments/control',
-                          '../../Generated_Data/peaks_called',
-                          '600')
+            call_pipeline(
+                exp,
+                control,
+                genome_index_path,
+                exp_alignment_output_path,
+                control_alignment_output_path,
+                peaks_called_directory_path,
+                genome_size
+            )
 
-
-
+# run
+peak_call_all_combs(control_dir, 
+                    experiment_dir, 
+                    genome_index_path, 
+                    exp_alignment_output_path, 
+                    control_alignment_output_path, 
+                    peaks_called_directory_path, 
+                    genome_size)
 
 
 
