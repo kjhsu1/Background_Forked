@@ -10,6 +10,9 @@ NOTE
     1. "--nomodel", this tells it to ignore making the shift model
     2. "--extsize", "20", this tells it to treat each fragment as uniform length of 20
 
+******* MAKE SURE TO CHECK THAT ABOVE TWO COMMANDS ARE REMOVED WHEN RUNNING GENOME WITH SUFFICIENT SIZE
+        (NOTHING TO CHANGE IN THIS SCRIPT, GO TO bam_to_peaks_called.py to CHANGE ************
+
 """
 
 """
@@ -118,30 +121,39 @@ def run_sam_to_bams(reads_fasta_path, output_path):
 
     subprocess.run(cmd, check=True)
 
-def run_bam_to_peaks(exp_output_path, control_output_path, exp_reads_fasta_path, control_reads_fasta_path, genome_size, peaks_output_path):
+def run_bam_to_peaks(
+        exp_output_path,
+        control_output_path,
+        exp_reads_fasta_path,
+        control_reads_fasta_path,
+        genome_size,
+        peaks_output_path):                       # ← optional MACS2 prefix
     """
-    Calls Peaks With MACS2 Through Program, bam_to_peaks_called.py
+    Calls Peaks With MACS2 Through bam_to_peaks_called.py
     """
-    # path string manipulation for exp
+
+    # path string manipulation for experiment
     basename = os.path.basename(exp_reads_fasta_path)
-    prefix, _ = os.path.splitext(basename)
-    exp_newname = 'sorted.' + prefix + '.bam'
+    exp_prefix, _ = os.path.splitext(basename)
+    exp_newname = 'sorted.' + exp_prefix + '.bam'
 
     # same for control
     basename = os.path.basename(control_reads_fasta_path)
-    prefix, _ = os.path.splitext(basename)
-    control_newname = 'sorted.' + prefix + '.bam'
+    control_prefix, _ = os.path.splitext(basename)
+    control_newname = 'sorted.' + control_prefix + '.bam'
 
     # derive the paths for the sorted BAMs
     exp_sorted_bam_path = os.path.join(exp_output_path, exp_newname)
     control_sorted_bam_path = os.path.join(control_output_path, control_newname)
+
 
     cmd = [
         'python3', 'bam_to_peaks_called.py',
         '--exp_sorted_bam_path', exp_sorted_bam_path,
         '--control_sorted_bam_path', control_sorted_bam_path,
         '--genome_size', genome_size,
-        '--output_dir', peaks_output_path
+        '--output_dir', peaks_output_path,
+        '--name', 'exp_' + exp_prefix + '_AND_' + 'control_' + control_prefix, # peak file is combo name of exp and control reads FASTA name
     ]
 
     subprocess.run(cmd, check=True)

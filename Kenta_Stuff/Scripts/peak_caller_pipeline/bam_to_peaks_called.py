@@ -25,23 +25,28 @@ parser.add_argument('--genome_size', type=str, required=True,
                     help='Total Genome Size; Sum # of Bases of All Chromosomes')
 parser.add_argument('--output_dir', type=str, required=True,
                     help='Path to Output Directory; Do Not Need File Name')
+parser.add_argument('--name', type=str, required=True, help=
+                    'file prefix you want to use for output peaks file')
 arg = parser.parse_args()
 
 exp_sorted_bam_path = arg.exp_sorted_bam_path
 control_sorted_bam_path = arg.control_sorted_bam_path
 genome_size = arg.genome_size
 output_dir = arg.output_dir
+file_prefix = arg.name
 
 """
 Functions
 _______
 """
 
-def bam_to_peaks(exp_sorted_bam_path, control_sorted_bam_path, genome_size, output_dir):
+def bam_to_peaks(exp_sorted_bam_path, control_sorted_bam_path, genome_size, output_dir, file_prefix):
+    '''
     basename = os.path.basename(exp_sorted_bam_path) # ex. sorted.exp1.bam
     file_prefix, _ = os.path.splitext(basename) # sorted.exp1, bam
     split = file_prefix.split('.')
     file_prefix = split[1]
+    '''
 
     cmd = [
         'macs2',
@@ -51,7 +56,9 @@ def bam_to_peaks(exp_sorted_bam_path, control_sorted_bam_path, genome_size, outp
         '-f', 'BAM', # file type
         '-g', genome_size,
         '-n', file_prefix,
-        '--outdir', output_dir # output directory
+        '--outdir', output_dir, # output directory 
+        '--nomodel', # DELETE THIS WHEN RUNNING BIG ENOUGH GENOME + READ NUMBER
+        '--extsize', '20' # DELETE THIS WHEN RUNNING BIG ENOUGH GENOME + READ NUMBER
     ]
 
     try:
@@ -67,6 +74,6 @@ ____
 """
 
 def main():
-    bam_to_peaks(exp_sorted_bam_path, control_sorted_bam_path, genome_size, output_dir)
+    bam_to_peaks(exp_sorted_bam_path, control_sorted_bam_path, genome_size, output_dir, file_prefix)
 
 main()

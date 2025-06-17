@@ -2,7 +2,7 @@
 @SQ	SN:chr1	LN:100
 @SQ	SN:chr2	LN:200
 @SQ	SN:chr3	LN:300
-@PG	ID:bowtie2	PN:bowtie2	VN:2.5.4	CL:"/opt/homebrew/bin/../Cellar/bowtie2/2.5.4/bin/bowtie2-align-s --wrapper basic-0 -x ../../Bowtie2_Stuff/index/random_genome_1 -f -S ../../Generated_Data/Alignments/experiment/random_genome_1_cov_10_reads.sam -U ../../Generated_Data/Reads_FASTA/Different_Coverages_Unbiased/random_genome_1_cov_10_reads.fa"
+@PG	ID:bowtie2	PN:bowtie2	VN:2.5.4	CL:"/opt/homebrew/bin/../Cellar/bowtie2/2.5.4/bin/bowtie2-align-s --wrapper basic-0 -x ../../Bowtie2_Stuff/index/random_genome_1 -f -S ../../Generated_Data/Alignments/experiment/random_genome_1_cov_10_reads.sam -U ../../Generated_Data/Reads_FASTA/Experimental_unbiased/random_genome_1_cov_10_reads.fa"
 read_1:chr1	0	chr1	67	42	20M	*	0	0	ATAGTCGGACGGACCACGCC	IIIIIIIIIIIIIIIIIIII	AS:i:0	XN:i:0	XM:i:0	XO:i:0	XG:i:0	NM:i:0	MD:Z:20	YT:Z:UU
 read_2:chr1	0	chr1	42	42	20M	*	0	0	TGGGAGCTTGTCTCAGGTGT	IIIIIIIIIIIIIIIIIIII	AS:i:0	XN:i:0	XM:i:0	XO:i:0	XG:i:0	NM:i:0	MD:Z:20	YT:Z:UU
 read_3:chr1	0	chr1	30	42	20M	*	0	0	TGGCGTCGTCATTGGGAGCT	IIIIIIIIIIIIIIIIIIII	AS:i:0	XN:i:0	XM:i:0	XO:i:0	XG:i:0	NM:i:0	MD:Z:20	YT:Z:UU
