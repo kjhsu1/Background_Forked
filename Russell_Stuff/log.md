@@ -74,6 +74,6 @@ Experiment 1: running peak finders with randomly generate genomes. The foregroun
 > 5) must convert sam to bam 
 > 6) Run results through multiple peak callers
 
-Kenta is working with Macs2?
+Kenta is working with Macs2.
 
 Russell is working with Homer.

@@ -16,6 +16,7 @@ Steps:
 - `-o` indicates the name of sorted output file
 
 4) Run `samtools index exp_1_sorted.bam`
+- **Run only if needed**
 - `index` is a subcommand of samtools that produces and outputs an indexed file. Indexing is useful for quick accessing of specific chromosomes and reads
 
 ## Getting homer to work
