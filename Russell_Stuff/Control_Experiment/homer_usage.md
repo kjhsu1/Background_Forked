@@ -22,4 +22,6 @@ Steps:
 ## Getting homer to work
 1) Create Tag directory with `makeTagDirectory Exp_1_tag_dir exp_1_sorted.bam`
 
-2) Run `findPeaks Exp_1_tag_dir > exp_1_homer.txt`
+2) 
+
+3) Run `findPeaks Exp_1_tag_dir > exp_1_homer.txt`
