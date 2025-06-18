@@ -6,7 +6,7 @@ create a random genome
 """
 
 # number of elements=num chromosomes, value=length of chrom
-genome_specs = [100, 200, 300]
+genome_specs = [250000, 250000, 250000, 250000]
 
 def generator(genome_specs):
     """
