@@ -6,14 +6,14 @@ Start by creating a conda environment using `conda env create -f control_environ
 Activate using `conda activate control_exp`.
 
 ## Set up
-Make sure `exp_1.fa` and `random_genome_1.fa.gz` is in pwd.
+Make sure `exp_1.fa`, `ctrl_1.fa`, and `random_genome_1.fa.gz` is in pwd.
 
 Use `mkdir index` to create directory to store bowtie2 index.
 
-Run `bowtie2-build random_genome_1.fa.gz index/random_genome_1` to create an index inside of `index` directory.
+Run `bowtie2-build random_genome_1.fa.gz index/rg_1` to create an index inside of `index` directory.
 
 ## Running bowtie2
-Run command `bowtie2 -x index/random_genome_1 -f -U exp_1.fa -S exp_1_output.sam`.
+Run command `bowtie2 -x index/rg_1 -f -U exp_1.fa -S exp_1_output.sam` and `bowtie2 -x index/rg_1 -f -U ctrl_1.fa -S ctrl_1_output.sam`
 
 `-x` flag indicates which index to use.
 
