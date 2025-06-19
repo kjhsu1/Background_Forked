@@ -77,7 +77,7 @@ os.system('samtools view -bS exp_1_output.sam | samtools sort -o exp_1_sorted.ba
 os.system('samtools view -bS ctrl_1_output.sam | samtools sort -o ctrl_1_sorted.bam')
 os.system('makeTagDirectory exp_1_tag_dir exp_1_sorted.bam')
 os.system('makeTagDirectory ctrl_1_tag_dir ctrl_1_sorted.bam')
-os.system('findPeaks exp_1_tag_dir -i ctrl_1_sorted.bam > homer_exp1_ctrl1.txt')
+os.system('findPeaks exp_1_tag_dir -i ctrl_1_tag_dir > homer_exp1_ctrl1.txt')
 os.system('ls -F')
 
 '''
