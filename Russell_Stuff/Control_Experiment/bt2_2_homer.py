@@ -7,8 +7,6 @@ parser.add_argument('genome', help='genome')
 parser.add_argument('exp', help='dir of diff exp coverages')
 parser.add_argument('ctrl', help='dir of control fasta files')
 parser.add_argument('--output', default='.', help='output destination')
-# parser.add_argument('')
-
 arg = parser.parse_args()
 
 wd = arg.output
@@ -18,8 +16,6 @@ os.system(f'mkdir {wd}/index')
 os.system(f'bowtie2-build {arg.genome} {wd}/index/genome > trial_5/index/log.txt')
 print()
 
-
-counter = 0
 i = 0
 
 for ctrl_file in os.listdir(arg.ctrl):
