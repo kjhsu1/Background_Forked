@@ -1,0 +1,9 @@
+track type=wiggle_0 name=exp_1_sorted
+variableStep chrom=chr1 span=200
+1	178571.43
+variableStep chrom=chr2 span=200
+1	2142857.14
+201	357142.86
+variableStep chrom=chr3 span=200
+1	1428571.43
+201	892857.14
