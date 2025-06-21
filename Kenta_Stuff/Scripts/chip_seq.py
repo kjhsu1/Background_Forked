@@ -185,23 +185,32 @@ def sample_genome(fasta, genome_pmfs):
     for i in range(num_sample):
         picked_chrom = random.choices(chroms, weights=biases)[0]
         sample_index = sample_from_bins(genome_pmfs[picked_chrom], 1)[0]
-        sample = list(range(sample_index, sample_index+k))
-        reads_dict[picked_chrom].append(sample)
+
+        strand = random.choice(['+', '-'])
+        if strand == '+':
+            coords = list(range(sample_index, sample_index + k))
+        else:
+            coords = list(range(sample_index + k - 1, sample_index - 1, -1))
+
+        reads_dict[picked_chrom].append((strand, coords))
 
     # print(json.dumps(reads_dict, indent=4))
     return reads_dict
 
 def sample_to_fasta(exp, fasta):
-    """
-    Converts base indices from the experiment into FASTA format with actual ACGT bases
-    """
+    """Convert sampled indices into FASTA format"""
+
+    complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C', 'N': 'N'}
     frag_num = 1
+
     for id, seq in LIB.read_fasta(fasta):
-        for sample in exp[id]:
-            dna = []
-            for base_index in sample:
-                dna.append(seq[base_index])
-            print(f'>read_{frag_num}:{id}')
+        for strand, coords in exp[id]:
+            dna = [seq[index] for index in coords]
+
+            if strand == '-':
+                dna = [complement.get(base, 'N') for base in dna]
+
+            print(f'>read_{frag_num}:{id}:{strand}')
             print(''.join(dna))
             frag_num += 1
 
