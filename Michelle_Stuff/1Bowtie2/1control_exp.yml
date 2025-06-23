@@ -1,0 +1,10 @@
+name: control_exp
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+dependencies:
+  - bowtie2
+  - zlib
+  - samtools
+  - python
