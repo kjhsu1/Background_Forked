@@ -31,7 +31,7 @@ arg = parser.parse_args()
 
 genome_path = arg.genome_path
 output_path = arg.output
-covs = [1, 5, 10, 25, 50, 100] # list of coverages; EDIT THIS IF YOU WANT TO RUN DIFFERENT COVERAGES
+covs = [1, 5, 10, 25] # list of coverages; EDIT THIS IF YOU WANT TO RUN DIFFERENT COVERAGES
 
 """
 Functions
@@ -47,7 +47,7 @@ def run_all_covs(genome_path, covs, output_path):
             "--coverage", str(cov),
             "--num_bg_peaks", "0",
             "--num_fg_peaks", "0",
-            "--fragment_length", "20"
+            "--fragment_length", "300"
         ]
 
         try:
