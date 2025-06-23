@@ -4,8 +4,8 @@ You do need your python in your yml file to run 3.10 as Sicer2 does not support 
 
 1. Convert BAM file to BED file
 make sure both samtools and bedtools are in yml dependencies
-samtools view -h <name.bam> | bedtools bamtobed -i stdin <name.bed>
+`bedtools bamtobed -i <name.bam> > <name.bed>`
 
 2. Install Sicer2
-conda install -y numpy scipy
-pip install SICER2
+`conda install -y numpy scipy`
+`pip install SICER2`
