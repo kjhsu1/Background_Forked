@@ -57,8 +57,8 @@ def bam_to_peaks(exp_sorted_bam_path, control_sorted_bam_path, genome_size, outp
         '-g', genome_size,
         '-n', file_prefix,
         '--outdir', output_dir, # output directory 
-        '--nomodel', # DELETE THIS WHEN RUNNING BIG ENOUGH GENOME + READ NUMBER
-        '--extsize', '20' # DELETE THIS WHEN RUNNING BIG ENOUGH GENOME + READ NUMBER
+        '--nomodel', # COMMENT THIS WHEN RUNNING BIG ENOUGH GENOME + READ NUMBER
+        '--extsize', '300' # COMMENT THIS WHEN RUNNING BIG ENOUGH GENOME + READ NUMBER
     ]
 
     try:

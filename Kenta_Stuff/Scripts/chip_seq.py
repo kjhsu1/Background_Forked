@@ -73,7 +73,8 @@ def add_peaks(pmf, num_peaks):
     """
     Take in a bins pmf, and adds num_peaks peaks to it
     """ 
-    peaks = [2, 4, 6, 8, 9, 8, 6, 4, 2] # can change this however you want 
+    #peaks = [2, 4, 6, 8, 9, 8, 6, 4, 2] # can change this however you want 
+    peaks = [round(1000 * min(i, 99 - i) / 49) for i in range(100)] # A peak that is 100 bp wide and peaks at 1000:1 compared to baseline level
     used_peaks = [] # store used peaks
     p_index = random.randint(0, len(pmf) - len(peaks)) # init
 
