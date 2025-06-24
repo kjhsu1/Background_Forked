@@ -26,11 +26,10 @@ make sure both samtools and bedtools are in yml dependencies<br>
     - --species = default species or your own
     - --o = creates an output directory
 
-Other possible parameters:
-    - -w/--window_size = window size. Default: 200bp
-    - -f/--fragment_size = amount of shift from the beginning of the read to the center of the DNA fragment represented by the read. Default: 150bp
-    - -egf/--effective_genome_fraction = effective_genome_fraction. Default: 0.74
-    - -fdr/--false_discovery_rate. Default: 0.01
-    - -g/--gap_size = minimum length of a "gap" such that neighboring window is an "island." Default: 600bp
-    - -e/--e_value: needed when no control library is provided. Default: 1000
-    
+Other possible parameters:<br>
+    - -w/--window_size = window size. Default: 200bp<br>
+    - -f/--fragment_size = amount of shift from the beginning of the read to the center of the DNA fragment represented by the read. Default: 150bp<br>
+    - -egf/--effective_genome_fraction = effective_genome_fraction. Default: 0.74<br>
+    - -fdr/--false_discovery_rate. Default: 0.01<br>
+    - -g/--gap_size = minimum length of a "gap" such that neighboring window is an "island." Default: 600bp<br>
+    - -e/--e_value: needed when no control library is provided. Default: 1000<br>
