@@ -1,5 +1,5 @@
 import os
-import sys
+# import sys # used for debugging
 import argparse
 
 parser = argparse.ArgumentParser(description='runs multiple coverages at once')
@@ -9,14 +9,22 @@ parser.add_argument('ctrl', help='dir of control fasta files')
 parser.add_argument('--output', default='.', help='output destination')
 arg = parser.parse_args()
 
+# working directory (aka output directory)
 wd = arg.output
+
+################################
+## initialization for bowtie2 ##
+################################
 
 os.system(f'rm -rf {wd}/index')
 os.system(f'mkdir {wd}/index')
-os.system(f'bowtie2-build {arg.genome} {wd}/index/genome > trial_5/index/log.txt')
-print()
+os.system(f'bowtie2-build {arg.genome} {wd}/index/genome > {wd}/index/log.txt')
 
-i = 0
+#################################
+### running bowtie2 and homer ###
+#################################
+
+i = 0 # used to track first run
 
 for ctrl_file in os.listdir(arg.ctrl):
     ctrl_out = ctrl_file.strip('.fa')

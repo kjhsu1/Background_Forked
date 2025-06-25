@@ -137,6 +137,7 @@ def create_pmf_all_chroms(fasta):
     """
     genome_pmfs = {}
     for id, seq in LIB.read_fasta(fasta):
+        if len(seq) < k: continue
         genome_pmfs[id] = create_pmf(len(seq), num_bg_peaks, num_fg_peaks, k)
     # print(json.dumps(genome_pmfs, indent=4))
     return genome_pmfs
@@ -169,6 +170,7 @@ def sample_genome(fasta, genome_pmfs):
     chrom_bias = {}
     total_bp = 0
     for id, seq in LIB.read_fasta(fasta):
+        if len(seq) < k: continue
         total_bp += len(seq)
         chrom_bias[id] = len(seq)
     for id in chrom_bias:
