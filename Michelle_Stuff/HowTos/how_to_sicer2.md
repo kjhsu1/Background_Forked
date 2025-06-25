@@ -1,13 +1,17 @@
-</h2>How to use Sicer2</h2>
+</h2>How to use Sicer2</h2><br>
 
 You do need your python in your yml file to run 3.10 as Sicer2 does not support python 3.13
 
+1. Convert BAM file to BED file<br>
+    - make sure both samtools and bedtools are in yml dependencies<br>
+    - have both your experiment and control bam files in the pwd
+    - run both bam files: `bedtools bamtobed -i <name.bam> > <name.bed>`
 
-1. Install Sicer2
+2. Install Sicer2
     - Numpy and scipy are needed to run Sicer 2: `conda install -y numpy scipy`<br>
     - Install sicer: `pip install SICER2`<br>
 
-2. Adding your own genome sizes to Sicer2
+3. Adding your own genome sizes to Sicer2
     - locate your `GenomeData.py`
     - I found mine in miniconda3\envs\sicer2\lib\python3.10\site-packages\sicer\lib
     - add your genome in: `<genome_name>_chroms = ['chr1', 'chr2',...]`
@@ -15,12 +19,12 @@ You do need your python in your yml file to run 3.10 as Sicer2 does not support 
     - at the bottom, at species_chroms and species_chrom_lengths, define your genome name: `"random1": random1_chroms` and `"random1": random1_chrom_lengths`
     - save your changes
 
-3. Run Sicer2
+4. Run Sicer2
     - example:
-        - `sicer -t random_genome_1_cov_100_output.bam -c unbiased_control_cov_100_random_genome_1_output.bam --species random1 --o random_1_sicer2`
+        - `sicer -t random_genome_1_cov_100_output.bed -c unbiased_control_cov_100_random_genome_1_output.bed --species random1 --o random_1_sicer2`
     - -t = treatment/experimental bed file
     - -c = control bed file
-    - --species = default species or your own
+    - -s/--species = default species or your own
     - --o = creates an output directory
 
 Other possible parameters:<br>
