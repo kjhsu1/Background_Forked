@@ -46,7 +46,7 @@ def run_all_covs(genome_path, covs, output_path):
             "--fasta", genome_path,
             "--coverage", str(cov),
             "--num_bg_peaks", "0",
-            "--num_fg_peaks", "0",
+            "--num_fg_peaks", "1",
             "--fragment_length", "300"
         ]
 

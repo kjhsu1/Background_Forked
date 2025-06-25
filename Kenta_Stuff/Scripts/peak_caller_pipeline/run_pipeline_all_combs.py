@@ -11,6 +11,9 @@ ex. control directory contains: control_5X.fa, control_10X.fa, control_15X.fa
     experiment directory contains: 5X.fa, 10X.fa, 15X.fa
 
     Then program will return peak files of 3*3 = 9 total peak files
+
+NOTE
+******PLEASE READ TOP COMMENT IN PIPELINE.PY BEFORE RUNNING ******
 """
 
 

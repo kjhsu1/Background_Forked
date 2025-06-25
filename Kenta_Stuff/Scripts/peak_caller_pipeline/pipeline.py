@@ -153,7 +153,7 @@ def run_bam_to_peaks(
         '--control_sorted_bam_path', control_sorted_bam_path,
         '--genome_size', genome_size,
         '--output_dir', peaks_output_path,
-        '--name', 'exp_' + exp_prefix + '_AND_' + 'control_' + control_prefix, # peak file is combo name of exp and control reads FASTA name
+        '--name', 'exp_' + exp_prefix + '_AND_' + 'control_' + control_prefix # peak file is combo name of exp and control reads FASTA name
     ]
 
     subprocess.run(cmd, check=True)
