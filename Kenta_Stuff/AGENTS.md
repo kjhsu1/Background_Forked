@@ -2,7 +2,8 @@
 - Only use the libraries that the codebase already uses.
 
 # Environment
-- use micromamba and activate the environment, "codex-env" 
+- run command line command, "source", on setup.sh
+	- look for Kenta_Stuff/snakemake_stuff/setup.sh
 
 # Style Guidlines
 - At Start of Each Program make sure to 
