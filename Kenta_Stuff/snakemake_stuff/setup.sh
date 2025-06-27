@@ -7,4 +7,5 @@ BIN_DIR="$INSTALL_DIR/bin"
 
 export PATH="$BIN_DIR:$PATH"
 
+eval "$(micromamba shell hook --shell bash)"
 micromamba activate codex-env
