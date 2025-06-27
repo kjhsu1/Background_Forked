@@ -2,8 +2,7 @@
 - Only use the libraries that the codebase already uses.
 
 # Environment
-- use micromamba and create new environment with environment.yml if environment doesn't exist
-- if environment exists use that instead
+- use micromamba and activate the environment, "codex-env" 
 
 # Style Guidlines
 - At Start of Each Program make sure to 
@@ -11,7 +10,7 @@
 	- ex. """Imports"""
 	- ex. """Functions"""
 - Use one line docstring for functions and explain input and output if complex
-= Use argparse to get user arguments
+- Use argparse to get user arguments
 
 # Interaction Instructions
 - Always ask clarifying questions if unsure
