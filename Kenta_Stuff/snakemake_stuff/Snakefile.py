@@ -133,7 +133,7 @@ rule align_bowtie2:
 
 		# For EXP
 		# then align using created genome index
-		bowtie2 align -genome_index {os.path.join(ALIGN, '{gen}_index')} -reads_fasta chipseq.output[1] | \
+		bowtie2 align -genome_index {os.path.join(ALIGN, '{gen}_index')} -reads_fasta align.input[1] | \
 		bowtie2 ... | \ # stdout (the SAM) pipe into BAM 
 		bowtie2 ... > # convert to sorted.bam save the file in ALIGNMENT
 
